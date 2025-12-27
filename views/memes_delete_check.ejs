@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>削除確認</title>
+</head>
+
+<body>
+
+    <h1>削除確認</h1>
+
+    <p>以下のミームを削除しようとしています。</p>
+
+    <ul>
+        <li>ミーム：<%= data.meme %>
+        </li>
+        <li>キャラ：<%= data.char %>
+        </li>
+        <li>出展作品：<%= data.original %>
+        </li>
+    </ul>
+
+    <p>本当に削除しますか？</p>
+
+    <a href="/memes/delete/<%= id %>">はい（削除）</a>
+    |
+    <a href="/memes/<%= id %>">いいえ（詳細へ戻る）</a>
+
+</body>
+
+</html>

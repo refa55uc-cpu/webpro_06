@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ミームを追加する</title>
+</head>
+
+<body>
+    <form action="/memes" method="POST">
+        <input type="text" name="meme" required>
+        <label for="meme">ミーム・ネタの名称:</label><br>
+        <input type="text" name="char" required>
+        <label for="char">キャラクター:</label><br>
+        <input type="text" name="original" required>
+        <label for="original">出展作品:</label><br>
+        <input type="text" name="detail">
+        <label for="detail">詳細:</label><br>
+        <input type="submit" values="登録">
+    </form>
+</body>
+
+</html>

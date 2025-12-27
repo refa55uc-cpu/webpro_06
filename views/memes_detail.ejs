@@ -1,0 +1,55 @@
+<!Doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        <%= data.meme %>
+    </title>
+</head>
+
+<body>
+    <h2>
+        <%= data.meme %>の詳細
+    </h2>
+    <table>
+        <tr>
+            <th>項目</th>
+            <th>データ</th>
+        </tr>
+        <tr>
+            <td>ID</td>
+            <td>
+                <%= data.id %>
+            </td>
+        </tr>
+        <tr>
+            <td>名称</td>
+            <td>
+                <%= data.meme %>
+            </td>
+        </tr>
+        <tr>
+            <td>キャラクター</td>
+            <td>
+                <%= data.char %>
+            </td>
+        </tr>
+        <tr>
+            <td>出典作品</td>
+            <td>
+                <%= data.original %>
+            </td>
+        <tr>
+            <td>詳細</td>
+            <td>
+                <%= data.detail %>
+            </td>
+        </tr>
+    </table>
+    <a href="/memes">一覧に戻る</a>
+    <a href="/memes/edit/<%= id %>">編集</a>
+    <a href="/memes/delete_check/<%= id %>">削除</a>
+</body>
+
+</html>

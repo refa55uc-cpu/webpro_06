@@ -1,0 +1,36 @@
+<!Doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ガンダムのネットミーム・ネタ集</title>
+</head>
+
+<body>
+    <h2>ネットミーム，ネタの詳細</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>ミーム・ネタの名称</th>
+            <th>キャラクター</th>
+        </tr>
+        <% let number=0 %>
+            <% for( let row of data ) { %>
+                <tr>
+                    <td>
+                        <%= row.id %>
+                    </td>
+                    <td>
+                        <%= row.meme %>
+                    </td>
+                    <td><a href="/memes/<%= number %>">
+                            <%= row.char %>
+                        </a></td>
+                </tr>
+                <% number +=1 %>
+                    <% } %>
+    </table>
+    <a href="/memes/create">ミーム・ネタを追加する</a>
+</body>
+
+</html>

@@ -5,6 +5,94 @@ app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 
+
+let memes = [
+  { id: 1, meme: "止まるんじゃねぇぞ...", char: "オルガ・イツカ", original: "機動戦士ガンダム　鉄血のオルフェンズ", detail: "俺がいる限り，俺は止まんねぇからよ..." },
+  { id: 2, meme: "それでも...!!!!ユニコｫｫｫｫーーーーン!!!!", char: "バナージ．リンクス", original: "機動戦士ガンダムUC", detail: "ガンダム，俺に力を貸せっ!!!" },
+  { id: 3, meme: "お前を殺す（デデン!!）", char: "ヒイロ・ユイ", original: "新機動戦記ガンダムW", detail: "お前を殺す(デデン!!)" },
+  { id: 4, meme: "連邦に反省を促すダンス", char: "偽マフティー", original: "機動戦士ガンダム　閃光のハサウェイ", detail: "やってみせろよ，マフティー!!!" },
+  { id: 5, meme: "カツラン・ザラ", char: "アスラン・ザラ", original: "機動戦士ガンダムSEED", detail: "はぁ．．．(クソデカため息)" },
+  { id: 6, meme: "50円(カオスガンダム)", char: "カオスガンダム", original: "機動戦士ガンダムSEED DESTINY", detail: "" }
+];
+
+// 一覧
+app.get("/memes", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  res.render('memes', { data: memes });
+});
+
+// Create
+app.get("/memes/create", (req, res) => {
+  res.redirect('/public/memes_new.html');
+});
+
+// Read
+app.get("/memes/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = memes[number];
+  res.render('memes_detail', { id: number, data: detail });
+});
+
+// Delete_check
+app.get("/memes/delete_check/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = memes[number];
+  res.render('memes_delete_check', { id: number, data: detail });
+});
+
+// Delete
+app.get("/memes/delete/:number", (req, res) => {
+  // 本来は削除の確認ページを表示する
+  // 本来は削除する番号が存在するか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  memes.splice(req.params.number, 1);
+  res.redirect('/memes');
+});
+
+// Create
+app.post("/memes", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const id = memes.length + 1;
+  const meme = req.body.meme;
+  const char = req.body.char;
+  const original = req.body.original;
+  const detail = req.body.detail;
+  memes.push({ id: id, meme: meme, char: char, original: original, detail: detail });
+  console.log(memes);
+  res.render('memes', { data: memes });
+});
+
+// Edit
+app.get("/memes/edit/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = memes[number];
+  res.render('memes_edit', { id: number, data: detail });
+});
+// Read
+app.get("/memes/:number", (req, res) => {
+  const number = req.params.number;
+  const detail = memes[number];
+  res.render("memes_detail", { id: number, data: detail });
+});
+
+// Update
+app.post("/memes/update/:number", (req, res) => {
+  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+
+  memes[req.params.number].meme = req.body.meme;
+  memes[req.params.number].char = req.body.char;
+  memes[req.params.number].original = req.body.original;
+  memes[req.params.number].detail = req.body.detail;
+  console.log(memes);
+  res.redirect('/memes');
+});
+
+
 let station = [
   { id: 1, code: "JE01", name: "東京駅" },
   { id: 2, code: "JE07", name: "舞浜駅" },
@@ -27,6 +115,7 @@ let station2_2 = [
   { id: 5, code: "JE14", name: "海浜幕張駅" },
   { id: 6, code: "JE05", name: "新浦安駅" },
 ];
+
 
 app.get("/keiyo2_2", (req, res) => {
   // 本来ならここにDBとのやり取りが入る

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ミーム編集</title>
+</head>
+
+<body>
+
+    <h1>ミーム編集</h1>
+
+    <form action="/memes/update/<%= id %>" method="post">
+
+        <p>
+            ミーム名：<br>
+            <input type="text" name="meme" value="<%= data.meme %>">
+        </p>
+
+        <p>
+            キャラクター：<br>
+            <input type="text" name="char" value="<%= data.char %>">
+        </p>
+
+        <p>
+            出展作品：<br>
+            <input type="text" name="original" value="<%= data.original %>">
+        </p>
+
+        <p>
+            詳細：<br>
+            <textarea name="detail"><%= data.detail %></textarea>
+        </p>
+
+        <button type="submit">更新</button>
+    </form>
+
+    <br>
+
+    <a href="/memes/<%= id %>">キャンセル（戻る）</a>
+
+</body>
+
+</html>
